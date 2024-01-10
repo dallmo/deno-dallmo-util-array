@@ -1,15 +1,15 @@
 
 /*
- *
+ * @module dallmo-util-array
  */
 
 //////////////////////////////////////////////////////////////
 /*
  * @function test
- * @returns {void}
+ * @returns {string}
  */
 function test(): string{
-  console.log("from dallmo-util-array, alongside ok string in return to assert.");
+  console.log("array ok");
   return "ok";
 }// 
 //////////////////////////////////////////////////////////////
@@ -18,3 +18,4 @@ export {
   test,
 
 }; // export
+
