@@ -8,6 +8,7 @@
 // for testing
 export {
 
+  assert,
   assertEquals
 
 } from "https://deno.land/std/assert/mod.ts";
