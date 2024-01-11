@@ -6,27 +6,19 @@ import {
 } from "../deps.ts";
 
 // the module methods to be tested
-import { 
-  test,
-  random_index,
-  random_item,
-  random_insert,
-  insert_item,
-  update_item,
-  add_all
-} from "../mod.ts";
+import * as dallmo_util_array from "../mod.ts";
 
 //////////////////////////////////////////////////////////////
 Deno.test( "test array : 1 : reaching dallmo-util-array", () => {
 
-  assertEquals( test(), "ok");
+  assertEquals( dallmo_util_array.test(), "ok");
 
 }); // Deno.test
 //////////////////////////////////////////////////////////////
 Deno.test( "test array : 2 : random_index", () => {
 
   let input_array: number[] = [1,2,3,4,5];
-  let result: number = random_index( input_array );
+  let result: number = dallmo_util_array.random_index( input_array );
   let expression: boolean = (( result >= 0 ) && ( result <= 4 )); 
 
 /*
@@ -42,7 +34,7 @@ Deno.test( "test array : 2 : random_index", () => {
 Deno.test( "test array : 3 : random_item", () => {
 
   const input_array: number[] = [1,2,3,4,5];
-  const result: number = random_item( input_array );
+  const result: number = dallmo_util_array.random_item( input_array );
   const expression: boolean = ( input_array.includes( result ) ); 
 
 /*  
@@ -59,7 +51,7 @@ Deno.test( "test array : 4 : random_insert", () => {
 
   const input_array: number[] = [1,2,3,4,5];
   const rand_1: number = Math.random();
-  const new_array: number[] = random_insert( input_array, rand_1 );
+  const new_array: number[] = dallmo_util_array.random_insert( input_array, rand_1 );
   const expression: boolean = ( new_array.includes( rand_1 ) ); 
 
 /*
@@ -92,27 +84,27 @@ Deno.test( "test array : 5 : insert_item", async(t) => {
   await t.step("step : insert before the head", async () => {
 
     let item_index: number = 0;
-        result = insert_item( input_array, item_index, new_item ); 
-    
+        result = dallmo_util_array.insert_item( input_array, item_index, new_item ); 
         assertEquals( result, [99,1,2,3]);
+
   }); // step
   //.................................................
   // after the tail / appending
   await t.step("step : insert after the tail", async () => {
 
     let item_index: number = 3;
-        result = insert_item( input_array, item_index, new_item ); 
-    
+        result = dallmo_util_array.insert_item( input_array, item_index, new_item ); 
         assertEquals( result, [1,2,3,99]);
+
   }); // step
   //.................................................
   // somewhere in-between
   await t.step("step : insert somewhere in-between", async () => {
 
     let item_index: number = 1;
-        result = insert_item( input_array, item_index, new_item ); 
-    
+        result = dallmo_util_array.insert_item( input_array, item_index, new_item ); 
         assertEquals( result, [1,99,2,3]);
+
   }); // step
   //---------------------------------------------------------
 
@@ -136,27 +128,27 @@ Deno.test( "test array : 6 : update_item", async (t) => {
   await t.step("step : item index out of range, < 0", async () => {
 
     let item_index: number = -1;
-        result = update_item( input_array, item_index, new_item ); 
-    
+        result = dallmo_util_array.update_item( input_array, item_index, new_item ); 
         assertEquals( result, input_array);
+
   }); // step
   //.................................................
   // case 2.
   await t.step("step : item index out of range, > array.length", async () => {
 
     let item_index: number = input_array.length+1;
-        result = update_item( input_array, item_index, new_item ); 
-    
+        result = dallmo_util_array.update_item( input_array, item_index, new_item ); 
         assertEquals( result, input_array);
+
   }); // step
   //.................................................
   // case 1.
   await t.step("step : item index within range", async () => {
 
     let item_index: number = 0;
-        result = update_item( input_array, item_index, new_item ); 
-    
+        result = dallmo_util_array.update_item( input_array, item_index, new_item ); 
         assertEquals( result, [99,2,3]);
+
   }); // step
   //---------------------------------------------------------
 
@@ -170,7 +162,7 @@ Deno.test( "test array : 7 : add_all", async (t) => {
   await t.step("step : pure numeric array with decimals", async () => {
 
     let input_array: number[] = [ 1, 2.2, 3 ];
-    let result: number = add_all( input_array );
+    let result: number = dallmo_util_array.add_all( input_array );
 
     assertEquals( result, ( 1 + 2.2 + 3 ));
 
@@ -186,7 +178,7 @@ Deno.test( "test array : 7 : add_all", async (t) => {
 
     // if an array of mixed type is given, an error should be thrown 
     assertThrows(() => {
-      let result_2: number = add_all( input_array_2 );
+      let result_2: number = dallmo_util_array.add_all( input_array_2 );
       console.log( result_2 );    
     }); // assertThrows
 
