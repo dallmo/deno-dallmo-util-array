@@ -4,7 +4,7 @@
  */
 
 import {
-  dallmo_math_util
+  dallmo_util_math
 } from "./deps.ts";
 
 //////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ function random_item( input_array: any[] ): any {
  */
 function random_insert( input_array: any[], new_item: any ): any[]{
 
-    const new_item_index: number = dallmo_math_util.random_integer( 0, input_array.length );
+    const new_item_index: number = dallmo_util_math.random_integer( 0, input_array.length );
     return insert_item( input_array, new_item_index, new_item );
 
 }; // function random_insert

@@ -14,12 +14,12 @@ export {
 
 } from "https://deno.land/std/assert/mod.ts";
 ////////////////////////////////////////////////////////////////////////////////
-// dallmo_math_util
+// dallmo_util_math
 // the local test deps
-//export * as dallmo_math_util from "../deno-dallmo-util-math.clone/mod.ts"; 
+//export * as dallmo_util_math from "../deno-dallmo-util-math.clone/mod.ts"; 
 
 // the published deno module deps
-export * as dallmo_math_util from "https://deno.land/x/dallmo_util_math/mod.ts";
+export * as dallmo_util_math from "https://deno.land/x/dallmo_util_math/mod.ts";
 ////////////////////////////////////////////////////////////////////////////////
 
 

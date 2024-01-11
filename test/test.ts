@@ -3,7 +3,6 @@ import {
   assert, 
   assertEquals, 
   assertThrows,
-  dallmo_math_util
 } from "../deps.ts";
 
 // the module methods to be tested
