@@ -1,2 +1,19 @@
-# deno-dallmo-util-array
-deno module, a collection of array util under dallmo-util
+# overiew
+a collection of array util under dallmo-util, published as a deno module.
+
+# dependencies
+- dallmo_util_math : https://deno.land/x/dallmo_util_math/std/mod.ts
+
+# installation
+```
+import * as dallmo_util_array from "https://deno.land/x/dallmo_util_array/std/mod.ts";
+```
+
+# list of available methods
+
+- random_index
+- random_item
+- random_insert
+- insert_item
+- update_item
+- add_all
