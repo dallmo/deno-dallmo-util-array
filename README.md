@@ -6,7 +6,7 @@ a collection of array util under dallmo-util, published as a deno module.
 
 # installation
 ```
-import * as dallmo_util_array from "https://deno.land/x/dallmo_util_array/std/mod.ts";
+import * as array_util from "https://deno.land/x/dallmo_util_array/std/mod.ts";
 ```
 
 # list of available methods
@@ -17,3 +17,4 @@ import * as dallmo_util_array from "https://deno.land/x/dallmo_util_array/std/mo
 - insert_item
 - update_item
 - add_all
+
