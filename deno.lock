@@ -3,6 +3,7 @@
   "packages": {
     "specifiers": {
       "jsr:@dallmo/util-math": "jsr:@dallmo/util-math@1.1.0",
+      "jsr:@dallmo/util-math@^1.1.0": "jsr:@dallmo/util-math@1.1.0",
       "jsr:@std/assert@^0.218.2": "jsr:@std/assert@0.218.2",
       "jsr:@std/fmt@^0.218.2": "jsr:@std/fmt@0.218.2"
     },
@@ -95,6 +96,8 @@
     "https://deno.land/x/dallmo_util_array@v1.0.7/deps.ts": "32c3d00b3bb0ab16d95be591d7aa4ee5e1a4677cd96f4b5c3fe424b0b21c336d",
     "https://deno.land/x/dallmo_util_array@v1.0.7/mod.ts": "61e22b5dd12713c1d7b0ab84455726419ab98f630610b5478a039a8799cdb786",
     "https://deno.land/x/dallmo_util_math@v1.0.4/app.ts": "00d57a5c5449b79b1beeb139bc89e505a72d35119900eb91fc84fbc76e9aa96c",
-    "https://deno.land/x/dallmo_util_math@v1.0.4/mod.ts": "79d9def20bd2e69bd92cda79c23fb36660aab4f3d8292f441a059026e47a28e9"
+    "https://deno.land/x/dallmo_util_math@v1.0.4/mod.ts": "79d9def20bd2e69bd92cda79c23fb36660aab4f3d8292f441a059026e47a28e9",
+    "https://deno.land/x/dallmo_util_math@v1.1.0/app.ts": "3154c77e552f860442cc713bcd8d1bc700bba153f3b1da94dd826f9016c000c4",
+    "https://deno.land/x/dallmo_util_math@v1.1.0/mod.ts": "79d9def20bd2e69bd92cda79c23fb36660aab4f3d8292f441a059026e47a28e9"
   }
 }

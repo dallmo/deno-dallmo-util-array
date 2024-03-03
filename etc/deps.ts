@@ -23,5 +23,5 @@ export {
 } from "https://deno.land/std@0.218.2/assert/mod.ts";
 ////////////////////////////////////////////////////////////////////////////////
 // the published deno module deps
-export * as dallmo_util_math from "https://deno.land/x/dallmo_util_math/mod.ts";
+export * as dallmo_util_math from "https://deno.land/x/dallmo_util_math@v1.1.0/mod.ts";
 ////////////////////////////////////////////////////////////////////////////////

@@ -1,7 +1,7 @@
 {
   "name": "@dallmo/util-array",
   "description": "deno module, a collection of array util under dallmo-util",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "tasks": {
     "dev": "deno run --watch app.ts",
     "test": "cd ./test; deno test --allow-read",
