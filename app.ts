@@ -5,13 +5,15 @@
 
 import {
   dallmo_util_math
-} from "./deps.ts";
+} from "./etc/deps.ts";
 
 //////////////////////////////////////////////////////////////
-/*
+/**
+ * get a random index of an array
+ * ----------------------
  * @function random_index
- * @param {array} input_array - the input array
- * @returns {number} an random index of the input array
+ * @param {any[]} input_array - the input array
+ * @returns {number} a random index of the input array
  */
 function random_index( input_array: any[] ): number {
 
@@ -19,7 +21,9 @@ function random_index( input_array: any[] ): number {
 
 }; // function random_index
 //////////////////////////////////////////////////////////////
-/*
+/**
+ * draw an item from an array randomly
+ * ---------------------
  * @function random_item
  * @param {array} input_array - the input array
  * @returns {any} return one of the item inside the given array
@@ -30,11 +34,13 @@ function random_item( input_array: any[] ): any {
 
 }; // function random_item
 //////////////////////////////////////////////////////////////
-/*
+/**
+ * insert an item into an array with random position
+ * -----------------------
  * @function random_insert
- * @param {array} input_array - the input array
+ * @param {any[]} input_array - the input array
  * @param {any} new_item - the item to be inserted into the input array
- * @returns {array} a new array with the new item inserted
+ * @returns {any[]} a new array with the new item inserted 
  */
 function random_insert( input_array: any[], new_item: any ): any[]{
 
@@ -43,12 +49,14 @@ function random_insert( input_array: any[], new_item: any ): any[]{
 
 }; // function random_insert
 //////////////////////////////////////////////////////////////
-/*
+/**
+ * insert an item into an array with specific position
+ * ---------------------
  * @function insert_item
- * @param {array} input_array - the original array
+ * @param {any[]} input_array - the original array
  * @param {number} item_index - in the new array, the index for the new_item 
  * @param {any} new_item - the item to insert into the original array
- * @returns {array} a new array with new_item inserted according to item_index
+ * @returns {any[]} a new array with new_item inserted according to item_index
  */
 function insert_item( input_array: any[], item_index: number, new_item: any ): any[]{
 
@@ -63,12 +71,14 @@ function insert_item( input_array: any[], item_index: number, new_item: any ): a
 
 }; // function insert_item
 //////////////////////////////////////////////////////////////
-/*
+/**
+ * update a specific item in an array
+ * ---------------------
  * @function update_item
- * @param {array} input_array - the input array
+ * @param {any[]} input_array - the input array
  * @param {number} item_index - the array item of this index will be updated
  * @param {any} new_item - update an array item as this
- * @returns {array} return a new array with the specified item updated
+ * @returns {any[]} return a new array with the specified item updated
  */
 function update_item( input_array: any[], item_index: number, new_item: any ): any[]{
 
@@ -95,9 +105,11 @@ function update_item( input_array: any[], item_index: number, new_item: any ): a
 
 }; // function update_item
 //////////////////////////////////////////////////////////////
-/*
+/**
+ * accepts a number array, add them all up and return the sum
+ * -----------------
  * @function add_all
- * @param {array}
+ * @param {number[]}
  * @returns {number} add all number in an number array
  */
 function add_all( input_array: number[] ): number{
@@ -112,22 +124,41 @@ function add_all( input_array: number[] ): number{
       if( typeof( item ) === "number" ){
         sum += item;
       }else{
-        // if an array of mixed type is given, an error should be thrown
-        throw Error;
+        // if an array of mixed type is given, an error will be thrown
+        throw Error("number array expected.");
       }; // if else
     }); // foreach
-  }catch( e ){
-    throw( e );
+  }catch( error ){
+    throw( error );
   }//try catch
 
   return sum;
 
 }; // function add_all
 //////////////////////////////////////////////////////////////
-/*
+/**
+ * search for given strings in an array with filter
+ * ref : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+ * ----------------
+ * @function search
+ * @param {any[]} input_array 
+ * @param {string} search_string 
+ * @returns {string[]} an array of strings, or empty if nothing matched
+ */
+function search( input_array: any[], search_string: string ): string[]{
+
+  return input_array.filter(
+    (element_list) => element_list.toString().toLowerCase().includes( search_string.toLowerCase() )
+  ); // arr.filter
+
+}; // function
+//////////////////////////////////////////////////////////////
+/**
+ * test connecting to this child module from parent
+ * --------------
  * @function test
  * @param {undefined} 
- * @returns {string} showing the connection to this module is ok
+ * @returns {string}
  */
 function test(): string{ 
   return "ok";
@@ -135,13 +166,14 @@ function test(): string{
 //////////////////////////////////////////////////////////////
 export {
 
+  test,
+
   random_index,
   random_item,
   random_insert,
   insert_item,
   update_item,
   add_all,
-  test,
+  search,
 
 }; // export
-

@@ -1,0 +1,23 @@
+---
+name: publish to jsr
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # The OIDC ID token is used for authentication with JSR.
+    steps:
+      - uses: actions/checkout@v4
+      # this is added to make sure the dependencies are jsr-compatible
+      - name: copy "deps.jsr.ts" as "deps.ts" in etc/
+        run: |
+          cd "${GITHUB_WORKSPACE}/etc"
+          rm -f deps.ts
+          cp deps.jsr.ts deps.ts
+      - run: npx jsr publish

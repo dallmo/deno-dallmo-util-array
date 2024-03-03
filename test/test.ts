@@ -3,7 +3,7 @@ import {
   assert, 
   assertEquals, 
   assertThrows,
-} from "../deps.ts";
+} from "../etc/deps.ts";
 
 // the module methods to be tested
 import * as dallmo_util_array from "../mod.ts";
@@ -21,11 +21,6 @@ Deno.test( "test array : 2 : random_index", () => {
   let result: number = dallmo_util_array.random_index( input_array );
   let expression: boolean = (( result >= 0 ) && ( result <= 4 )); 
 
-/*
-  console.log("input array : ", input_array );
-  console.log("random_index : ", result );
-*/
-
   // expect that to be true
   assert( expression );
 
@@ -36,11 +31,6 @@ Deno.test( "test array : 3 : random_item", () => {
   const input_array: number[] = [1,2,3,4,5];
   const result: number = dallmo_util_array.random_item( input_array );
   const expression: boolean = ( input_array.includes( result ) ); 
-
-/*  
-  console.log("input array : ", input_array );
-  console.log("random_item : ", result );
-*/
 
   // expect that to be true
   assert( expression );
@@ -53,12 +43,6 @@ Deno.test( "test array : 4 : random_insert", () => {
   const rand_1: number = Math.random();
   const new_array: number[] = dallmo_util_array.random_insert( input_array, rand_1 );
   const expression: boolean = ( new_array.includes( rand_1 ) ); 
-
-/*
-  console.log("random num : ", rand_1 );
-  console.log("input array : ", input_array );
-  console.log("new array : ", new_array );
-*/
  
   // expect these to be true
   // the new item exists in the new array
@@ -187,4 +171,65 @@ Deno.test( "test array : 7 : add_all", async (t) => {
 
 }); // Deno.test
 //////////////////////////////////////////////////////////////
+Deno.test(" test array : 8 : search", async (t) => {
 
+  const test_array: any[] = ["aa", "abc", "a a", "b b", 123123, "123cc", "真係", "真 係 乜","唔係"];
+  
+  let search_string: string;
+  let search_result: string[];
+  let expected_result: string[];
+
+  //---------------------------------------------------------
+  await t.step("step : test ascii string, no space", async () => {
+
+    search_string = "a";
+    search_result = dallmo_util_array.search( test_array, search_string );
+    expected_result = ["aa", "abc", "a a"];
+
+    assertEquals( search_result, expected_result );
+
+  }); // step
+  //................................
+  await t.step("step : test ascii string, with space", async () => {
+
+    search_string = "a a";
+    search_result = dallmo_util_array.search( test_array, search_string );
+    expected_result = ["a a"];
+
+    assertEquals( search_result, expected_result );
+
+  }); // step
+  //................................
+  await t.step("step : test UTF-8 string, no space", async () => {
+
+    search_string = "真係";
+    search_result = dallmo_util_array.search( test_array, search_string );
+    expected_result = ["真係"];
+
+    assertEquals( search_result, expected_result );
+
+  }); // step
+  //................................
+  await t.step("step : test UTF-8 string, with space", async () => {
+
+    search_string = "真 係";
+    search_result = dallmo_util_array.search( test_array, search_string );
+    expected_result = ["真 係 乜"];
+
+    assertEquals( search_result, expected_result );
+
+  }); // step
+  //................................
+  await t.step("step : test ascii string, nothing matched", async () => {
+
+    search_string = "asdf";
+    search_result = dallmo_util_array.search( test_array, search_string );
+    expected_result = [];
+
+    assertEquals( search_result, expected_result );
+
+  }); // step
+  //---------------------------------------------------------
+
+}); // deno test
+//////////////////////////////////////////////////////////////
