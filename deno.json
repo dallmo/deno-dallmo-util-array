@@ -7,7 +7,7 @@
     "test": "cd ./test; deno test --allow-read",
     "test-deno": "cd bin; ./update-deps-deno.sh ; cd ../test; deno test --allow-read",
     "test-jsr": "cd bin; ./update-deps-jsr.sh ; cd ../test; deno test --allow-read ; cd ../bin; ./update-deps-deno.sh",
-    "update-cache": "deno cache --reload --lock-write etc/deps.ts"
+    "update-cache": "deno cache --reload --lock-write etc/deps.deno.ts"
   },
   "exports": "./mod.ts"
 }
