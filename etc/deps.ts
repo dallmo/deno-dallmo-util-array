@@ -1,10 +1,11 @@
 
 /**
  * --------------------------
- * for jsr modules
+ * for deno modules
  * --------------------------
  * this file will be symlinked / copied as deps.ts when publishing to 
- * jsr, which does not allow importing modules from deno.land/x via http.
+ * deno.land/x ; when this is used for publishing to jsr,
+ * it will cause errors.
  * 
  * keep all imports / dependencies here for centralized management
  * all other imports in this module should only point to here
@@ -19,8 +20,8 @@ export {
   assertEquals,
   assertThrows
 
-} from "jsr:@std/assert@^0.218.2";
+} from "https://deno.land/std@0.218.2/assert/mod.ts";
 ////////////////////////////////////////////////////////////////////////////////
-// the published jsr module deps
-export * as dallmo_util_math from "jsr:@dallmo/util-math@^1.1.0";
+// the published deno module deps
+export * as dallmo_util_math from "https://deno.land/x/dallmo_util_math@v1.1.0/mod.ts";
 ////////////////////////////////////////////////////////////////////////////////
