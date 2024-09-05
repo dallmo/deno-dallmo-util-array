@@ -13,7 +13,7 @@ Deno.test( "test array : 1 : reaching dallmo-util-array", () => {
 
   assertEquals( dallmo_util_array.test(), "ok");
 
-}); // Deno.test
+}); // Deno.test 1
 //////////////////////////////////////////////////////////////
 Deno.test( "test array : 2 : random_index", () => {
 
@@ -24,7 +24,7 @@ Deno.test( "test array : 2 : random_index", () => {
   // expect that to be true
   assert( expression );
 
-}); // Deno.test
+}); // Deno.test 2
 //////////////////////////////////////////////////////////////
 Deno.test( "test array : 3 : random_item", () => {
 
@@ -35,7 +35,7 @@ Deno.test( "test array : 3 : random_item", () => {
   // expect that to be true
   assert( expression );
 
-}); // Deno.test
+}); // Deno.test 3
 //////////////////////////////////////////////////////////////
 Deno.test( "test array : 4 : random_insert", () => {
 
@@ -51,7 +51,7 @@ Deno.test( "test array : 4 : random_insert", () => {
   // the new array is 1 more item than the input array
   assertEquals( new_array.length, input_array.length+1 );
 
-}); // Deno.test
+}); // Deno.test 4
 //////////////////////////////////////////////////////////////
 Deno.test( "test array : 5 : insert_item", async(t) => {
 
@@ -92,7 +92,7 @@ Deno.test( "test array : 5 : insert_item", async(t) => {
   }); // step
   //---------------------------------------------------------
 
-}); // Deno.test
+}); // Deno.test 5
 //////////////////////////////////////////////////////////////
 Deno.test( "test array : 6 : update_item", async (t) => {
 
@@ -136,9 +136,158 @@ Deno.test( "test array : 6 : update_item", async (t) => {
   }); // step
   //---------------------------------------------------------
 
-}); // Deno.test
+}); // Deno.test 6
 //////////////////////////////////////////////////////////////
-Deno.test( "test array : 7 : add_all", async (t) => {
+Deno.test( "test array : 7 : remove_item", async (t) => {
+
+  let input_array: any[];
+  let result: any[];
+  let target_item: any;
+
+  //---------------------------------------------------------
+  // case 1.
+  // target item in a certain position in the array,
+  // not the first, not the last
+  await t.step("step : target item neither the first nor the last", async () => {
+    input_array = [1,2,3,4,5];
+    target_item = 4;
+    result = dallmo_util_array.remove_item( input_array, target_item );
+    assertEquals( result, [1,2,3,5] );
+  }); // step
+  
+  //---------------------------------------------------------
+  // case 2. 
+  // target item is the first item of the array
+  await t.step("step : target item is the first item ", async () => {
+    input_array = [1,2,3,4,5];
+    target_item = 1;
+    result = dallmo_util_array.remove_item( input_array, target_item );
+    assertEquals( result, [2,3,4,5] );
+  }); // step
+
+  //---------------------------------------------------------
+  // case 3.
+  // target item is the last item of the array
+  await t.step("step : target item is the last item ", async () => {
+    input_array = [1,2,3,4,"abc"];
+    target_item = "abc";
+    result = dallmo_util_array.remove_item( input_array, target_item );
+    assertEquals( result, [1,2,3,4] );
+  }); // step
+
+  //---------------------------------------------------------
+  // case 4.
+  // target item has 2 occurences
+  await t.step("step : target item has multiple occurences", async () => {
+    input_array = [1,2,2,2,5];
+    target_item = 2;
+    result = dallmo_util_array.remove_item( input_array, target_item );
+    assertEquals( result, [1,2,2,5] );
+  }); // step
+
+  //---------------------------------------------------------
+  // case 5.
+  // target does not exist, even as a substring
+  await t.step("step : target item does not exist, even as a substring", async () => {
+    input_array = [1,2,3,4,"aabb"];
+    target_item = "aa";
+    result = dallmo_util_array.remove_item( input_array, target_item );
+    assertEquals( result, input_array );
+  }); // step
+
+
+}); // Deno.test 7
+//////////////////////////////////////////////////////////////
+Deno.test( "test array : 8 : gen_array_by_range", async (t) => {
+
+  let start: any;
+  let end: any;
+  let result: number[];
+  const array_zero: number[] = [0];
+
+  //---------------------------------------------------------
+  // case 1.
+  // start and end are different natural numbers, start > end
+  await t.step("step : start and end are different, start > end", async () => {
+    start = 5;
+    end = 2;
+    result = dallmo_util_array.gen_array_by_range( start, end );
+    assertEquals( result, [2,3,4,5] );
+  }); // step
+  
+  //---------------------------------------------------------
+  // case 2. 
+  // start and end are different natural numbers, start < end
+  await t.step("step : start and end are different, start < end", async () => {
+    start = 2;
+    end = 5;
+    result = dallmo_util_array.gen_array_by_range( start, end );
+    assertEquals( result, [2,3,4,5] );
+  }); // step
+
+  //---------------------------------------------------------
+  // case 3.
+  // start and end are different natural numbers, start == end
+  await t.step("step : start and end are the same, start == end", async () => {
+    start = 4;
+    end = 4;
+    result = dallmo_util_array.gen_array_by_range( start, end );
+    assertEquals( result, [4] );
+  }); // step
+
+  //---------------------------------------------------------
+  // case 4.
+  // start is natural number, end == 0
+  await t.step("step : start is natural number, end == 0", async () => {
+    start = 4;
+    end = 0;
+    result = dallmo_util_array.gen_array_by_range( start, end );
+    assertEquals( result, [0,1,2,3,4] );
+  }); // step
+
+  //---------------------------------------------------------
+  // case 5.
+  // start == 0, end is natural number
+  await t.step("step : start == 0, end is natural number", async () => {
+    start = 0;
+    end = 3;
+    result = dallmo_util_array.gen_array_by_range( start, end );
+    assertEquals( result, [0,1,2,3] );
+  }); // step
+
+  //---------------------------------------------------------
+  // case 6.
+  // start == 0, end is negative integer
+  await t.step("step : start == 0, end < 0", async () => {
+    start = 0;
+    end = -3;
+    result = dallmo_util_array.gen_array_by_range( start, end );
+    assertEquals( result, array_zero );
+  }); // step
+
+  //---------------------------------------------------------
+  // case 7.
+  // start is negative integer, end == 0
+  await t.step("step : start < 0, end == 0", async () => {
+    start = -11;
+    end = 0;
+    result = dallmo_util_array.gen_array_by_range( start, end );
+    assertEquals( result, array_zero );
+  }); // step
+
+  //---------------------------------------------------------
+  // case 8.
+  // start and end are both negative integers
+  await t.step("step : start < 0, end < 0", async () => {
+    start = -2;
+    end = -3;
+    result = dallmo_util_array.gen_array_by_range( start, end );
+    assertEquals( result, array_zero );
+  }); // step
+
+}); // Deno.test 8
+//////////////////////////////////////////////////////////////
+Deno.test( "test array : 9 : add_all", async (t) => {
   
   //---------------------------------------------------------
   // case 1.
@@ -169,9 +318,9 @@ Deno.test( "test array : 7 : add_all", async (t) => {
   }); // step
   //---------------------------------------------------------
 
-}); // Deno.test
+}); // Deno.test 9
 //////////////////////////////////////////////////////////////
-Deno.test(" test array : 8 : search", async (t) => {
+Deno.test(" test array : 10 : search", async (t) => {
 
   const test_array: any[] = ["aa", "abc", "a a", "b b", 123123, "123cc", "真係", "真 係 乜","唔係"];
   
@@ -231,5 +380,6 @@ Deno.test(" test array : 8 : search", async (t) => {
   }); // step
   //---------------------------------------------------------
 
-}); // deno test
+}); // deno test 10
 //////////////////////////////////////////////////////////////
+

@@ -14,6 +14,8 @@
 - random_insert
 - insert_item
 - update_item
+- remove_item
+- gen_array_by_range
 - add_all
 - search
 
@@ -78,3 +80,4 @@ to run test codes :
 [comments]: -----------------------------------
 [link-1]: https://deno.land/x/dallmo_util_array
 [link-2]: https://jsr.io/@dallmo/util-array
+

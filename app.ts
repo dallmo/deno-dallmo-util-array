@@ -106,6 +106,65 @@ function update_item( input_array: any[], item_index: number, new_item: any ): a
 }; // function update_item
 //////////////////////////////////////////////////////////////
 /**
+ * remove an item from an array
+ * ---------------------
+ * @function remove_item
+ * @param {any[]} input_array - the input array
+ * @param {any} target_item - the item to be found
+ * @returns {any[]} return a new array with the found item removed, or the original array if there isn't any
+ */
+function remove_item( input_array: any[], target_item: any ): any[] {
+
+  // try looking for the target_item from the input_array
+  const found_at: number = input_array.indexOf( target_item );
+  //console.log("found_at: ", found_at );
+
+  // if the target_item can be found, the index will be 0..natural number by array length
+  // otherwise, when it can't be found, it will be -1
+  if( found_at != -1 ){
+    
+    // remove the item in place at the found index,
+    // only the first occurence, for 1 time
+    input_array.splice( found_at, 1 );
+
+  }; // if the target_item can be found
+
+  return input_array;
+
+}; // function remove_item
+//////////////////////////////////////////////////////////////
+/**
+ * generate an array of integers with a range defined by start and end
+ * ---------------------
+ * @function 
+ * @param {number} start, natural number
+ * @param {number} end, natural number
+ * @returns {number[]} an array of integers
+ */
+function gen_array_by_range( start: number, end: number ): number[] {
+
+  // if the given range has the same start and end
+  if( start == end ){
+    return [start];
+  }; // if they are equal
+
+  // if either start or end is less than 0
+  if( start<0 || end<0 ){
+    return [0];
+  }; // if
+
+  // make sure start is smaller than end
+  if( start > end ){
+    [start,end] = [end,start];
+  }; // make sure start is smaller
+
+  const array_length = end - start + 1;
+
+    return Array.from( Array( array_length ).keys(), x => x + start );
+  
+}; // function 
+//////////////////////////////////////////////////////////////
+/**
  * accepts a number array, add them all up and return the sum
  * -----------------
  * @function add_all
@@ -173,6 +232,9 @@ export {
   random_insert,
   insert_item,
   update_item,
+  remove_item,
+  gen_array_by_range,
+
   add_all,
   search,
 
