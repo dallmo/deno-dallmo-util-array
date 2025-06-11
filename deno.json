@@ -1,13 +1,13 @@
 {
   "name": "@dallmo/util-array",
   "description": "deno module, a collection of array util under dallmo-util",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "tasks": {
     "dev": "deno run --watch app.ts",
     "test": "cd ./test; deno test --allow-read",
-    "test-deno": "cd bin; ./update-deps-deno.sh ; cd ../test; deno test --allow-read",
-    "test-jsr": "cd bin; ./update-deps-jsr.sh ; cd ../test; deno test --allow-read ; cd ../bin; ./update-deps-deno.sh",
-    "update-cache": "deno cache --reload --lock-write etc/deps.deno.ts"
+    "test-jsr": "cd ./test; deno test --allow-read",
+    "update-cache": "deno cache --reload etc/deps.ts",
+    "check-all": "deno check app.ts mod.ts etc/deps.ts test/test.ts"
   },
   "exports": "./mod.ts"
 }
