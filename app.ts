@@ -14,7 +14,16 @@ import {
 //////////////////////////////////////////////////////////////
 
 // manage items
+/**
+ * insert an item into an array with specific position
+ * ---------
+ * @constant
+ * @type {function ( input_array: any[], item_index: number, new_item: any ): any[]}
+ * @see `/lib/manage-items.ts`
+ */
 const insert_item = manage_items.insert_item;
+
+
 const update_item = manage_items.update_item;
 const remove_item = manage_items.remove_item;
 
@@ -33,7 +42,6 @@ const random_insert = random_tools.random_insert;
  * test connecting to this child module from parent
  * --------------
  * @function test
- * @param {undefined} 
  * @returns {string}
  */
 function test(): string{ 
