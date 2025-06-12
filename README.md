@@ -76,6 +76,9 @@ updates have therefore been made to add the "jsr:" prefix to both the sample cod
 
 
 # updates
+## 2025-06-12
+- group functions under `lib/`, and `app.ts` import via `etc/deps.ts` for cleaner hierachy and future managements ;
+
 ## 2025-06-11
 - remove custom steps in github workflow which make changes to etc/deps.ts ;
 - archived deno.land related files and focus only on jsr ; 
